@@ -1,0 +1,46 @@
+{
+  "todos": [
+    {
+      "id": "1",
+      "titel": "learn redux",
+      "author": "manish",
+      "status": true
+    },
+    {
+      "id": "2",
+      "titel": "learn react",
+      "author": "suvam",
+      "status": true
+    },
+    {
+      "id": "3",
+      "titel": "learn typescript",
+      "author": "deepak",
+      "status": true
+    },
+    {
+      "id": "30b8",
+      "titel": "hello",
+      "author": "world",
+      "status": false
+    },
+    {
+      "id": "58c4",
+      "titel": "hello",
+      "author": "world",
+      "status": false
+    },
+    {
+      "id": "229a",
+      "titel": "hello",
+      "author": "world",
+      "status": false
+    },
+    {
+      "id": "0e0c",
+      "titel": "learn ",
+      "author": "reducer",
+      "status": false
+    }
+  ]
+}
