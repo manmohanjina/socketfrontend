@@ -205,11 +205,7 @@
 
 import React, { useState, useEffect } from 'react';
 import {jwtDecode} from 'jwt-decode';
-import Signup from './component/chatApp/signup';
-import Login from './component/chatApp/login';
-import CreateRoom from './component/chatApp/createRoom';
-import JoinRoom from './component/chatApp/chat';
-import Chat from './component/chatApp/chat';
+
 import AllRoutes from './routes/AllRoutes';
 
 
