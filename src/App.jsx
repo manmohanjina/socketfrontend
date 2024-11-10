@@ -207,6 +207,7 @@ import React, { useState, useEffect } from 'react';
 import {jwtDecode} from 'jwt-decode';
 
 import AllRoutes from './routes/AllRoutes';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -217,13 +218,18 @@ function App() {
   const [roomId, setRoomId] = useState('');
   const [userId, setUserId] = useState('');
   const [stage, setStage] = useState(token ? 'rooms' : 'auth'); // New state to manage stages
-
+const navigate=useNavigate()
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode(token);
       setIsAdmin(decoded.isAdmin);
       setUserId(decoded.userId);
       setStage('rooms');
+      console.log(decoded);
+      
+    }
+    if(!token){
+      navigate('/')
     }
     console.log(isAdmin,token);
     

@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate} from "react-router-dom"
+import { ThemeContext } from '../context';
+import Loading from '../loading';
 
 const Login = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
-  const [isAdmin, setIsAdmin] = useState(false);
+  const {isAdmin,setIsAdmin,setLoading,loading}=useContext(ThemeContext)
+
+
+ 
   
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -16,6 +21,8 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true)
+
       const res = await axios.post('https://socketio-77oc.onrender.com/user/login', { username, password });
       const { token } = res.data;
       setToken(token);
@@ -27,6 +34,7 @@ const Login = () => {
       setIsAdmin(decoded.isAdmin);
       
       localStorage.setItem('token', token);
+      setLoading(false)
       
 
     } catch (err) {
@@ -36,9 +44,17 @@ const Login = () => {
   
 
   useEffect(()=>{
-    isAdmin?navigate('/createroom'):navigate('/joinroom')
-  },[isAdmin])
+    if(isAdmin){
+      navigate('/createroom')
+    }
+    else if(!isAdmin&&token){
+navigate("/joinroom")
+    }
+   
+  },[isAdmin,token])
 
+  console.log(loading,'loading');
+  
   
 
   return (
@@ -62,13 +78,26 @@ const Login = () => {
           className="w-full border border-gray-300 p-2 rounded-lg"
           required
         />
+        
       </div>
-      <button
+      
+      {
+        loading?
+        
+        Loading():<button
         type="submit"
+        
         className="w-full bg-blue-500 text-white p-2 rounded-lg"
       >
         Log In
       </button>
+      }
+
+      <div>
+      <p className="text-center text-lg font-medium"> Wish to <Link to="/signup" className="text-blue-500 hover:text-blue-700 transition-colors duration-200 ease-in-out ml-1 underline" > signup </Link> </p>
+      
+      </div>
+      
     </form>
   );
 };

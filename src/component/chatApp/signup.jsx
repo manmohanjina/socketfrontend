@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -40,15 +41,7 @@ const Signup = () => {
         />
       </div>
       <div className="mb-4">
-        <label className="flex items-center">
-          <input
-            type="checkbox"
-           
-            onChange={(e) => setIsAdmin(e.target.checked)}
-            className="mr-2"
-          />
-          <span className="text-gray-700">Admin</span>
-        </label>
+      <p className="text-center text-lg font-medium"> Wish to <Link to="/" className="text-blue-500 hover:text-blue-700 transition-colors duration-200 ease-in-out ml-1 underline" > Login </Link> </p>
       </div>
       <button
         type="submit"

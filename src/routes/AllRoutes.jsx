@@ -9,7 +9,7 @@ import PrivateRoute from "./privateRoute"
 export default function AllRoutes(){
 
 return <Routes>
-    <Route path="/login" element={<Login/>}></Route>
+    <Route path="/" element={<Login/>}></Route>
     <Route path="/signup" element={<Signup/>} ></Route>
     <Route path="/createroom" element={<PrivateRoute><CreateRoom></CreateRoom></PrivateRoute>} ></Route>
     <Route path="/joinroom" element={<JoinRoom></JoinRoom>} ></Route>

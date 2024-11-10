@@ -1,13 +1,17 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import axios from 'axios';
+import { ThemeContext } from '../context';
 import {useNavigate} from "react-router-dom"
+import Loading from '../loading';
 const JoinRoom = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
   const [joinRoomId, setJoinRoomId] = useState('');
   const [roomId,setRoomId]=useState('')
+  const {setLoading,loading}=useContext(ThemeContext)
 
   const handleSubmit = async (e) => {
+    setLoading(true)
     e.preventDefault();
     try {
       await axios.post(
@@ -17,7 +21,7 @@ const JoinRoom = () => {
       );
       setRoomId(joinRoomId);
       console.log(roomId);
-      
+      setLoading(false)
     } catch (err) {
       console.error(err.message);
     }
@@ -41,12 +45,14 @@ const JoinRoom = () => {
           required
         />
       </div>
-      <button
+      {
+        loading?Loading():<button
         type="submit"
         className="w-full bg-blue-500 text-white p-2 rounded-lg"
       >
         Join Room
       </button>
+      }
     </form>
   );
 };

@@ -23,7 +23,7 @@ const Chat = ({ roomId, userId='Noob' }) => {
     e.preventDefault();
     if (message.trim()) {
       socket.emit('message', { roomId, message });
-      setMessage(''); // Clear the input field after sending the message
+      setMessage(''); 
     }
   };
 
